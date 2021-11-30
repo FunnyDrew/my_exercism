@@ -5,28 +5,29 @@ Write your code for the 'Two Bucket' exercise in this file. Make the tests in
 To get started with TDD, see the `README.md` file in your
 `ruby/two-bucket` directory.
 =end
-
+require 'pry'
 
 class TwoBucket
     @@move = 0;
     def initialize(first_bucket_size, second_bucket_size, desired_liters, full_bucket)
         @should_be_full = Bucket.new(first_bucket_size)
-        @shoule_be_empty = Bucket.new(second_bucket_size)
+        @should_be_empty = Bucket.new(second_bucket_size)
         @desired_liters = desired_liters
         @full_bucket = full_bucket
     end
 
 
     def moves            
-        while @should_be_full.curent_volume != @desired_liters || @shoule_be_empty.curent_volume != @desired_liters || @should_be_full.move > 10
+        while @should_be_full.curent_volume != @desired_liters || @should_be_empty.curent_volume != @desired_liters || @should_be_full.move > 10
             if @should_be_full.is_empty?
                 @should_be_full.fill_bucket
-            elsif @shoule_be_empty.is_full?
-                @shoule_be_empty.empty_bucket
+            elsif @should_be_empty.is_full?
+                @should_be_empty.empty_bucket
             else 
-                @should_be_full.pour_into_other(@shoule_be_empty)
+                @should_be_full.pour_into_other(@should_be_empty)
             end
             puts @should_be_full.curent_volume
+            #binding.pry
         end
         @should_be_full.move        
     end
@@ -76,9 +77,10 @@ class TwoBucket
             @@move += 1
             into_bucket_emptyness = into_bucket.full_volume - into_bucket.curent_volume
             can_fill_in = into_bucket_emptyness - self.curent_volume
+            #binding.pry
             if can_fill_in > 0
-                into_bucket.curent_volume += can_fill_in
-                self.curent_volume -= can_fill_in
+                into_bucket.curent_volume += self.curent_volume
+                self.curent_volume = 0
             else
                 into_bucket.curent_volume = into_bucket.full_volume
                 self.curent_volume -=into_bucket_emptyness
