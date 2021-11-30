@@ -10,6 +10,7 @@ require 'pry'
 class TwoBucket
     @@move = 0;
     def initialize(first_bucket_size, second_bucket_size, desired_liters, full_bucket)
+        
         @should_be_full = Bucket.new(first_bucket_size)
         @should_be_empty = Bucket.new(second_bucket_size)
         @desired_liters = desired_liters
@@ -18,7 +19,7 @@ class TwoBucket
 
 
     def moves            
-        while @should_be_full.curent_volume != @desired_liters || @should_be_empty.curent_volume != @desired_liters || @should_be_full.move > 10
+        while @should_be_full.curent_volume != @desired_liters && @should_be_empty.curent_volume != @desired_liters
             if @should_be_full.is_empty?
                 @should_be_full.fill_bucket
             elsif @should_be_empty.is_full?
@@ -27,6 +28,7 @@ class TwoBucket
                 @should_be_full.pour_into_other(@should_be_empty)
             end
             puts @should_be_full.curent_volume
+            puts @should_be_full.move
             #binding.pry
         end
         @should_be_full.move        
@@ -89,14 +91,6 @@ class TwoBucket
 
     end
 end
-=begin
-buck1 = TwoBucket::Bucket.new(5)
-buck2 = TwoBucket::Bucket.new(3)
-buck1.fill_bucket
-buck1.pour_into_other(buck2)
-puts buck1.curent_volume
-puts buck2.curent_volume
-=end
 
-game = TwoBucket.new(3,5,1,'one')
+game = TwoBucket.new(3,1,3,'one')
 puts game.moves
