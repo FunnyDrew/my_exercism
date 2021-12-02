@@ -22,22 +22,23 @@ class TwoBucket
     end
 
 
-    def moves            
+    def moves        
+        count = 0        
         while @should_be_full.curent_volume != @desired_liters && @should_be_empty.curent_volume != @desired_liters
             if @should_be_full.is_empty?
                 @should_be_full.fill_bucket
             elsif @should_be_empty.is_full?
                 @should_be_empty.empty_bucket
+            elsif @should_be_empty.full_volume ==  @desired_liters
+                @should_be_empty.fill_bucket
             else 
                 @should_be_full.pour_into_other(@should_be_empty)
             end
+            count += 1
             #binding.pry
         end
-        @should_be_full.move        
+        count        
     end
-
-    
-
 
     def goal_bucket
         @should_be_full.curent_volume == @desired_liters ? @should_be_full.name : @should_be_empty.name
@@ -48,7 +49,6 @@ class TwoBucket
     end
 
     class Bucket
-        @@move = 0;
         attr_accessor :curent_volume, :full_volume, :name
         def initialize(full_volume, name)
             @full_volume = full_volume
@@ -69,17 +69,14 @@ class TwoBucket
         end
 
         def fill_bucket
-            @@move += 1
             @curent_volume = @full_volume            
         end
 
         def empty_bucket
-            @@move += 1
             @curent_volume = 0            
         end
 
         def pour_into_other(into_bucket)
-            @@move += 1
             into_bucket_emptyness = into_bucket.full_volume - into_bucket.curent_volume
             can_fill_in = into_bucket_emptyness - self.curent_volume
             #binding.pry
