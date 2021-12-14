@@ -5,3 +5,15 @@ Write your code for the 'Tournament' exercise in this file. Make the tests in
 To get started with TDD, see the `README.md` file in your
 `ruby/tournament` directory.
 =end
+class Tournament
+  def self.tally(input)
+
+    text = <<~Tally
+      Team                           | MP |  W |  D |  L |  P    
+    Tally
+    text[0..3] = 'Beam'
+    text
+  end
+end
+
+puts Tournament.tally("hi");
