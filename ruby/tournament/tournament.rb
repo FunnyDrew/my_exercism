@@ -11,7 +11,7 @@ class Tournament
     text = <<~Tally
       Team                           | MP |  W |  D |  L |  P    
     Tally
-    text[0..3] = 'Beam'
+    text[12..13] = input
     text
   end
 end
