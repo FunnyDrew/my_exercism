@@ -7,11 +7,11 @@ To get started with TDD, see the `README.md` file in your
 =end
 class Tournament
   def self.tally(input)
-
+    
     text = <<~Tally
-      Team                           | MP |  W |  D |  L |  P    
+      Team                           | MP |  W |  D |  L |  P
     Tally
-    text[12..13] = input
+    
     text
   end
 end
