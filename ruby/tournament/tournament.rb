@@ -9,7 +9,10 @@ class Tournament
   def self.tally(input)    
     head = "Team".ljust(31)<<"| MP |  W |  D |  L |  P\n" 
     team_board=[]
-    team1, team2= parse(input)
+    teams= parse(input)
+    teams.map do |team|
+      index = team_board.index?()
+    end
   end
 
   def self.parse(str)
