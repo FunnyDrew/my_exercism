@@ -9,21 +9,36 @@ class Tournament
   def self.tally(input) 
     return head if input == "\n"
     
-    team_board=[]
-    teams= parse(input)
-    teams.map do |team|
-      index = team_board.index{|item| item[:name] == team[:name]}
-      if index
-        puts "hey"
-      else
-        team_board<<team;
+    teams_board=[]
+
+    plays= parse(input)
+    plays.each do |play|
+      teams = parse_play(play)
+      teams.map do |team|
+        index = teams_board.index do |item| 
+          item[:name] == team[:name]
+        end
+        if index
+          teams_board[index][:MP] += team[:MP]
+          teams_board[index][:W] += team[:W]
+          teams_board[index][:D] += team[:D]
+          teams_board[index][:L] += team[:L]
+          teams_board[index][:P] += team[:P]
+        else
+          teams_board<<team;
+        end
       end
     end
-    sorted_board = team_board.sort{|team1, team2| team2[:P] <=> team1[:P]}
+    #sorted_board = teams_board.sort{|team1, team2| team2[:P] <=> team1[:P]}
+    sorted_board = teams_board.sort_by{|team| [-team[:P], team[:name]]}
     print(sorted_board)
   end
 
-  def self.parse_string(str)
+  def self.parse(input)
+    input.split("\n")
+  end
+
+  def self.parse_play(str)
     team1_name, team2_name, result = str.split(";")
 
     if result.strip == "draw"
