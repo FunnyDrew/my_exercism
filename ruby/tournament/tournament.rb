@@ -29,7 +29,7 @@ class Tournament
         end
       end
     end
-    #sorted_board = teams_board.sort{|team1, team2| team2[:P] <=> team1[:P]}
+    
     sorted_board = teams_board.sort_by{|team| [-team[:P], team[:name]]}
     print(sorted_board)
   end
@@ -67,5 +67,3 @@ class Tournament
   end
 
 end
-
-#puts Tournament.tally("tin; bin; lost")
