@@ -4,7 +4,7 @@ require_relative 'tournament'
 # Common test data version: 1.4.0 ee01fe0
 class TournamentTest < Minitest::Test
   def test_just_the_header_if_no_input
-    # skip
+    #skip
     input = <<~INPUT
 
     INPUT
@@ -17,7 +17,7 @@ class TournamentTest < Minitest::Test
   end
 
   def test_a_win_is_three_points_a_loss_is_zero_points
-    skip
+    #skip
     input = <<~INPUT
       Allegoric Alaskans;Blithering Badgers;win
     INPUT
@@ -27,12 +27,12 @@ class TournamentTest < Minitest::Test
       Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3
       Blithering Badgers             |  1 |  0 |  0 |  1 |  0
     TALLY
-
-    assert_equal expected, Tournament.tally(input)
+    
+    assert_equal expected, Tournament.tally(input), :highlight => true
   end
 
   def test_a_win_can_also_be_expressed_as_a_loss
-    skip
+    #skip
     input = <<~INPUT
       Blithering Badgers;Allegoric Alaskans;loss
     INPUT
@@ -47,7 +47,7 @@ class TournamentTest < Minitest::Test
   end
 
   def test_a_different_team_can_win
-    skip
+    #skip
     input = <<~INPUT
       Blithering Badgers;Allegoric Alaskans;win
     INPUT
@@ -62,7 +62,7 @@ class TournamentTest < Minitest::Test
   end
 
   def test_a_draw_is_one_point_each
-    skip
+    #skip
     input = <<~INPUT
       Allegoric Alaskans;Blithering Badgers;draw
     INPUT

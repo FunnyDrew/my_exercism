@@ -6,16 +6,24 @@ To get started with TDD, see the `README.md` file in your
 `ruby/tournament` directory.
 =end
 class Tournament
-  def self.tally(input)    
-    head = "Team".ljust(31)<<"| MP |  W |  D |  L |  P\n" 
+  def self.tally(input) 
+    return head if input == "\n"
+    
     team_board=[]
     teams= parse(input)
     teams.map do |team|
-      index = team_board.index?()
+      index = team_board.index{|item| item[:name] == team[:name]}
+      if index
+        puts "hey"
+      else
+        team_board<<team;
+      end
     end
+    sorted_board = team_board.sort{|team1, team2| team2[:P] <=> team1[:P]}
+    print(sorted_board)
   end
 
-  def self.parse(str)
+  def self.parse_string(str)
     team1_name, team2_name, result = str.split(";")
 
     if result.strip == "draw"
@@ -31,6 +39,18 @@ class Tournament
     [team1, team2]
   end
 
+  def self.print(team_board)
+    head = "Team".ljust(31)<<"| MP |  W |  D |  L |  P\n"
+    head<<team_board.map do |team|
+      "#{team[:name]}".ljust(31)<<"|  #{team[:MP]} |  #{team[:W]} |  #{team[:D]} |  #{team[:L]} |  #{team[:P]}"
+    end.join("\n")<<"\n"
+    
+  end
+  
+  def self.head
+    head = "Team".ljust(31)<<"| MP |  W |  D |  L |  P\n"
+  end
+
 end
 
-puts Tournament.tally("tin; bin; lost")
+#puts Tournament.tally("tin; bin; lost")
