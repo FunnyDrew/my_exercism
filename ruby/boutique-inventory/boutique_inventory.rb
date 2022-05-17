@@ -4,11 +4,12 @@ class BoutiqueInventory
   end
 
   def item_names
-    raise 'Implement the BoutiqueInventory#item_names method'
+    @items.map {|item| item[:name]}
+          .sort
   end
 
   def cheap
-    raise 'Implement the BoutiqueInventory#cheap method'
+    @items.select {|item| item[:price] < 30}
   end
 
   def out_of_stock
