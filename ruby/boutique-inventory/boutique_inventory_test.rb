@@ -59,12 +59,12 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_out_of_stock_for_no_items
-    skip
+    #skip
     assert_empty BoutiqueInventory.new([]).out_of_stock
   end
 
   def test_out_of_stock_for_all_items
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: {} }
     coat = { price: 65.00, name: "Coat", quantity_by_size: {} }
     items = [shoes, coat]
@@ -72,7 +72,7 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_out_of_stock_for_some_items
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: { s: 1, xl: 4 } }
     coat = { price: 65.00, name: "Coat", quantity_by_size: {} }
     handkerchief = { price: 19.99, name: "Handkerchief", quantity_by_size: {} }
@@ -81,7 +81,7 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_stock_for_out_of_stock
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: {} }
     coat = { price: 65.00, name: "Coat", quantity_by_size: {} }
     items = [shoes, coat]
@@ -89,7 +89,7 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_stock_for_item_for_some_in_stock
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: { s: 1, xl: 4 } }
     coat = { price: 65.00, name: "Coat", quantity_by_size: { s: 2 } }
     handkerchief = { price: 19.99, name: "Handkerchief", quantity_by_size: {} }
@@ -98,12 +98,12 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_total_stock_for_no_items
-    skip
+    #skip
     assert_equal 0, BoutiqueInventory.new([]).total_stock
   end
 
   def test_total_stock_for_no_stock
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: {} }
     coat = { price: 65.00, name: "Coat", quantity_by_size: {} }
     items = [shoes, coat]
@@ -111,7 +111,7 @@ class BoutiqueInventoryTest < Minitest::Test
   end
 
   def test_total_stock_for_some_items
-    skip
+    #skip
     shoes = { price: 30.00, name: "Shoes", quantity_by_size: { s: 1, xl: 4 } }
     coat = { price: 65.00, name: "Coat", quantity_by_size: {} }
     handkerchief = { price: 19.99, name: "Handkerchief", quantity_by_size: {} }
