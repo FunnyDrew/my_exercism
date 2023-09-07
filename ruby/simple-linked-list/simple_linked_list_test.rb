@@ -8,13 +8,13 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_element_can_hold_a_different_value
-    #skip
+    skip
     element = Element.new(10)
     assert_equal 10, element.datum
   end
 
   def test_element_next
-    #skip
+    skip
     element = Element.new(1)
     assert_nil element.next
   end
@@ -133,7 +133,7 @@ class LinkedListTest < Minitest::Test
     assert_equal list, list.reverse!
   end
 
-  def test_works_for_1_through_10 # rubocop:disable Naming/VariableNumber
+  def test_works_for_1_through_10
     skip
     list = SimpleLinkedList.new(1..10)
     expected = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
