@@ -11,18 +11,18 @@ module Luhn
   end
 
   def self.valid?(number)
-    normalized = number.delete(' ').chars
-
-    return false if normalized.length < 2
     
-    return false if normalized.select {|item| !(/^[0-9]/ =~ item)}.any?
+    normalized = number.delete(' ')
+    return false if normalized.match?(/[^0-9]/) || normalized.length < 2
 
-    sum = normalized
+    normalized
+    .chars
     .reverse
     .map(&:to_i)
     .map
     .with_index {|item, index| index.even? ? item : seconds_converting(item)}
     .sum
-    sum % 10 == 0 ? true : false
+    .modulo(10)
+    .zero?
   end
 end
