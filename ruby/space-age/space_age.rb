@@ -7,6 +7,7 @@ To get started with TDD, see the `README.md` file in your
 =end
 class SpaceAge
   attr_accessor :age
+
   @@planets_orb_period_to_earth = {
     mercury: 0.2408467,
     venus: 0.61519726,
@@ -24,7 +25,7 @@ class SpaceAge
   end
 
   @@planets_orb_period_to_earth.each do |planet_name, period|
-    define_method("on_#{planet_name}") {@age/period/EARTH_ORB_PERIOD_IN_SEC}
+    define_method("on_#{planet_name}") {age/period/EARTH_ORB_PERIOD_IN_SEC}
   end
   
 end
