@@ -36,23 +36,27 @@ class Clock
   end
 
   def + (time)
-    #byebug
+    
     self.hours = self.hours + time.hours
     self.minutes = self.minutes + time.minutes
     self
   end
 
   def - (time)
-    #byebug
+    
     self.hours = self.hours - time.hours
     self.minutes = self.minutes - time.minutes
     self
   end
 
+  def == (time)
+    minutes_equality = (self.min_to60(self.minutes) == time.min_to60(time.minutes))
+    hours_equality = (self.hour_to24(self.hours) == time.hour_to24(time.hours))    
+    hours_equality && minutes_equality
+  end
+
   def to_s
-    min = min_to60(minutes)
-    #byebug
-    
+    min = min_to60(minutes)    
     hh = hour_to24(hours)
     
     clock_normalized_output(hh)<<":"<<clock_normalized_output(min)
