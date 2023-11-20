@@ -33,13 +33,13 @@ class IsbnVerifierTest < Minitest::Test
   end
 
   def test_invalid_character_in_isbn_is_not_treated_as_zero
-    skip
+    #skip
     string = "3-598-P1581-X"
     refute IsbnVerifier.valid?(string), "Expected false, '#{string}' is not a valid isbn"
   end
 
   def test_x_is_only_valid_as_a_check_digit
-    skip
+    #skip
     string = "3-598-2X507-9"
     refute IsbnVerifier.valid?(string), "Expected false, '#{string}' is not a valid isbn"
   end

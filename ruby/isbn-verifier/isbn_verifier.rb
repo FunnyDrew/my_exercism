@@ -13,10 +13,11 @@ module IsbnVerifier
 	end
 
 	def self.prevalid?(isbn_code)
-		
+		isbn_code.delete('-') =~ /\d{9}(\d|X)/ ? true : false
 	end
 
 	def self.valid?(isbn_code)
+		return false unless self.prevalid?(isbn_code)
 		str_without_def = isbn_code.delete('-').chars
 		indexes = str_without_def
 			.each_with_index.map do |value, index|
